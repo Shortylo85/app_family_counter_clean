@@ -1,0 +1,38 @@
+{% extends "../base.html" %}
+
+{% block uiKit %} {% endblock %}
+
+{% block nav %} {% endblock %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="uk-container uk-container-small">
+  <h1 class="uk-text-center">This is Registration form</h1>
+  <form  class="uk-form-stacked" action= {% url "register" %} method="post">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="uk-margin">
+        <label class="uk-form-label" for="form-stacked-text">{{ field.label_tag }}</label>
+        {% if field.errors %}
+        <div class="uk-alert-danger" uk-alert>
+          <a class="uk-alert-close" uk-close></a>
+          <p>{{ field.errors }}</p>
+        </div>
+        {% endif %}
+        <div class="uk-form-controls">
+           <input class="uk-input" name= {{ field.html_name }} id= {{ field.auto_id }} >
+        </div>
+    </div>
+    {% endfor %}
+    <input name="next" type="hidden" value="{{next}}">
+    <button class="uk-button uk-button-primary" type="submit" name="button">Register</button>
+  </form>
+
+</div>
+
+{% endblock %}

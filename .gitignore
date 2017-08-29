@@ -1,0 +1,7 @@
+.project
+.pydevproject
+*.pyc
+.settings/
+*.gz
+*.csv
+client_secrets.json
