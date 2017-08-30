@@ -1,0 +1,36 @@
+{% extends "../base.html" %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- <div style="position:absolute; top:100px; width:10"> -->
+<div class="uk-container uk-container-small">
+    {% for chat in chats %}
+      {% if chat.user == request.user %}
+        <div class="uk-card uk-card-primary uk-card-body uk-width-3-4@m uk-margin uk-align-right">
+          <h3>{{ chat.user }}</h3>
+          <p>{{ chat.message }}</p>
+        </div>
+      {% else %}
+        <div class="uk-card uk-card-default uk-card-body uk-width-3-4@m uk-margin uk-align-left">
+          <h3>{{ chat.user }}</h3>
+          <p>{{ chat.message }}</p>
+        </div>
+      {% endif %}
+    {% endfor %}
+
+  <form class="" action= "" method="post">
+    <div class="uk-margin uk-position-bottom-center uk-width-1-2">
+      {% csrf_token %}
+        <input class="uk-input uk-width-5-6" type="text" placeholder="Write here...">
+        <button class="uk-button uk-button-primary uk-width-1-6"><span uk-icon="icon: pencil; ratio: 1"></span> Send</button>
+    </div>
+  </form>
+
+
+</div>
+
+{% endblock %}

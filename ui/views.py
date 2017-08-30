@@ -7,7 +7,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 
 from ui.forms import RegistrationForm
-from ui.models import City, UserCity
+from ui.models import City, UserCity, Chat
 
 
 # Create your views here.
@@ -78,6 +78,20 @@ def saveLocation(request):
      
     if request.method == 'POST':
         return HttpResponse(request.method)
+    
+    
+def chat(request):
+    
+    chats = Chat.objects.all()
+    built_context = {'chats': chats}
+    
+    return render(request, template_name = 'ui/chat.html', context = built_context)
+
+def postMessage(request):
+    return HttpResponse('postMessage view')
+
+def getMessage(request):
+    return HttpResponse('getMessage view')
 
         
         
