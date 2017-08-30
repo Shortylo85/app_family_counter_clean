@@ -3,7 +3,7 @@ import json
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.contrib.auth.views import logout
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 
 from ui.forms import RegistrationForm
@@ -88,8 +88,14 @@ def chat(request):
     return render(request, template_name = 'ui/chat.html', context = built_context)
 
 def postMessage(request):
-    return HttpResponse('postMessage view')
-
+    if request.method == 'POST':
+        msg = request.POST.get('msgbox',None)
+        chat_s = Chat(user=request.user, message=msg)
+        if msg != '':
+            chat_s.save()
+        return JsonResponse({'msg':msg, 'user':chat_s.user.username})
+    else:
+        return HttpResponse("Response must be method = POST")
 def getMessage(request):
     return HttpResponse('getMessage view')
 
