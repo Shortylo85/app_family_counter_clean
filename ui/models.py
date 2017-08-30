@@ -11,3 +11,8 @@ class City(models.Model):
 class UserCity(models.Model):
     user = models.ForeignKey(User, blank=True, null=True)
     city = models.ForeignKey(City, blank=True, null=True)
+    
+class Chat(models.Model):
+    user = models.ForeignKey(User, blank=True, null=True)
+    message = models.CharField(max_length=500)
+    created = models.DateTimeField(auto_now_add=True)

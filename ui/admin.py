@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from ui.models import City, UserCity
+from ui.models import City, UserCity, Chat
 
 
 class AdminCity(admin.ModelAdmin):
@@ -14,8 +14,12 @@ class AdminUserCity(admin.ModelAdmin):
         model = UserCity
 
 
-
+class AdminChat(admin.ModelAdmin):
+    list_display = ['user', 'message', 'created']
+    class Meta:
+        model = Chat
 
 # Register your models here.
 admin.site.register(City, AdminCity)
 admin.site.register(UserCity, AdminUserCity)
+admin.site.register(Chat, AdminChat)
