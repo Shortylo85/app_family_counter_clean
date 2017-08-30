@@ -1,0 +1,17 @@
+{% for chat in chats %}
+  {% if chat.user == request.user %}
+    <div class="uk-card uk-card-primary uk-card-body uk-width-3-4@m uk-margin uk-align-right">
+      <h3>{{ chat.user }}</h3>
+      <p>{{ chat.message }}</p>
+    </div>
+  {% else %}
+    <div class="uk-card uk-card-default uk-card-body uk-width-3-4@m uk-margin uk-align-left">
+      <h3>{{ chat.user }}</h3>
+      <p>{{ chat.message }}</p>
+    </div>
+  {% endif %}
+{% empty %}
+<div class="uk-card uk-card-primary uk-card-body uk-width-3-4@m uk-margin uk-align-right">
+  <p>There is no message...</p>
+</div>
+{% endfor %}

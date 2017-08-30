@@ -88,17 +88,23 @@ def chat(request):
     return render(request, template_name = 'ui/chat.html', context = built_context)
 
 def postMessage(request):
+    
     if request.method == 'POST':
-        msg = request.POST.get('msgbox',None)
+        msg = request.POST.get('msg_value', None)
+        print(msg)
         chat_s = Chat(user=request.user, message=msg)
-        if msg != '':
-            chat_s.save()
+#         if msg != '':
+        chat_s.save()
         return JsonResponse({'msg':msg, 'user':chat_s.user.username})
     else:
         return HttpResponse("Response must be method = POST")
-def getMessage(request):
-    return HttpResponse('getMessage view')
 
+def getMessage(request):
+    
+    chats = Chat.objects.all()
+    built_context = {'chats': chats}
+    
+    return render(request, template_name = 'ui/messages.html', context = built_context)
         
         
     

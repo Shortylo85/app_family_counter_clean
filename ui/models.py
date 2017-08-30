@@ -14,5 +14,5 @@ class UserCity(models.Model):
     
 class Chat(models.Model):
     user = models.ForeignKey(User, blank=True, null=True)
-    message = models.CharField(max_length=500)
+    message = models.CharField(max_length=500, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
