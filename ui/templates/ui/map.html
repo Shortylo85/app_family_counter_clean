@@ -70,12 +70,28 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIayL1Ao1hTSk7Y55ewEePkNy
 
 
 <script type="text/javascript">
-  $(function() {
-    // var source = [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ];
-    $("#search_term").autocomplete({
-      source: "/map/get-term/",
-      // source: source,
-      minLength: 2,
+  function getData() {
+    const search_term = $('#search_term').val();
+    console.log(`THIS IS THE SEARCH TERM -->|${search_term}|<--`);
+    const data = $.ajax({
+      type: "GET",
+      url: `/map/get-term/?term=${search_term}`,
+      async: false,
+      success: function(data) {
+        console.log('ajax success', data);
+      }
+    }).responseText;
+    return data;
+  }
+  function autoComplete() {
+    var dropdown_data = getData();
+    console.log(dropdown_data);
+    // populate dropdown with this data
+  }
+  $(document).ready(function() {
+    autoComplete();
+    $('#search_term').on('input', function() {
+      autoComplete();
     });
   });
 </script>

@@ -57,14 +57,12 @@ def user_logout(request):
 def getTerm(request):
     if request.is_ajax():
         search_term = request.GET.get('term','')
+        print('----------------> GOT SEARCH TERM:', search_term)
         cities = City.objects.filter(city_name__icontains = search_term)[:20]
 
         result = []
         for city in cities:
-            city_json = {}
-            city_json['city_name'] = city.city_name
-            
-            result.append(city_json)
+            result.append(city.city_name)
         data = json.dumps(result)
         print('this is results\n',result)
         print("THIS IS CITIES ---------> ", data)
