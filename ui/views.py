@@ -93,8 +93,8 @@ def postMessage(request):
         msg = request.POST.get('msg_value', None)
         print(msg)
         chat_s = Chat(user=request.user, message=msg)
-#         if msg != '':
-        chat_s.save()
+        if msg != '':
+            chat_s.save()
         return JsonResponse({'msg':msg, 'user':chat_s.user.username})
     else:
         return HttpResponse("Response must be method = POST")

@@ -11,18 +11,21 @@
   <div id="msg-items">
     {% for chat in chats %}
       {% if chat.user == request.user %}
-        <div class="uk-card uk-card-primary uk-card-body uk-width-3-4@m uk-margin uk-align-right">
-          <h3>{{ chat.user }}</h3>
-          <p>{{ chat.message }}</p>
+        <div class="uk-card uk-card-primary uk-card-hover uk-card-body uk-width-3-4@m uk-margin uk-align-right">
+          <h3 class="uk-card-title"v>{{ chat.user.username }}</h3>
+          <img class="uk-align-right uk-margin-remove-adjacent" src="http://via.placeholder.com/80x80">
+          <p class="uk-text-break">{{ chat.message }}</p>
         </div>
       {% else %}
-        <div class="uk-card uk-card-default uk-card-body uk-width-3-4@m uk-margin uk-align-left">
-          <h3>{{ chat.user }}</h3>
-          <p>{{ chat.message }}</p>
+        <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-width-3-4@m uk-margin uk-align-left">
+          <h3 class="uk-card-title">{{ chat.user.username }}</h3>
+          <img class="uk-align-right uk-margin-remove-adjacent" src="http://via.placeholder.com/80x80">
+          <p class="uk-text-break">{{ chat.message }}</p>
         </div>
       {% endif %}
     {% empty %}
-      <div class="uk-alert-warning" uk-alert>
+      <div class="uk-alert-primary uk-animation-fade" uk-alert>
+        <a class="uk-alert-close" uk-close></a>
         <p>There is no message...</p>
       </div>
     {% endfor %}
@@ -32,7 +35,7 @@
     </script> -->
   </div>
 
-  <form id="post-form" class="uk-margin uk-position-bottom-center uk-width-1-2 uk-position-fixed uk-position-z-index" action= {% url 'postMessage' %} method="POST">
+  <form id="post-form" class="uk-margin uk-position-bottom-center uk-width-1-2 uk-position-fixed uk-position-z-index" style="border:1px solid black" action= {% url 'postMessage' %} method="POST">
     {% csrf_token %}
     <input id="my_msg" class="uk-input uk-width-5-6" type="text" placeholder="Write here...">
     <button id="submit" type="submit" class="uk-button uk-button-primary uk-width-1-6">send</button>

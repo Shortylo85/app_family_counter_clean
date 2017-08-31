@@ -10,7 +10,7 @@ $('#post-form').on('submit',function(event){
 
       success: function(json){
         $("#my_msg").val('');
-        $("#msg-items").append('<div class="uk-card uk-card-primary uk-card-body uk-width-3-4@m uk-margin uk-align-right"><h3>'+ json.user +'</h3><p>' + json.msg + '</p></div>');
+        $("#msg-items").append('<div class="uk-card uk-card-primary uk-card-body uk-width-3-4@m uk-margin uk-align-right"><h3>'+ json.user +'</h3><p class="uk-text-break">' + json.msg + '</p></div>');
         // var msg_container = document.getElementById("#msg-container");
         // msg_container.scrollTop = msg_container.scrollHeight;
       }
