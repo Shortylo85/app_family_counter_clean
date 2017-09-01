@@ -57,8 +57,7 @@ class Command(BaseCommand):
         counter = 0
         for row in csv_file:
             city = City()
-            city.country = row[1]
-            city.city_name = row[3]
+            city.city_name = row[3]+" "+row[1]+" "+row[4]
             city.lat = row[5]
             city.lng = row[6]
                 

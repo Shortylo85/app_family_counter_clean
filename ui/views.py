@@ -62,7 +62,8 @@ def getTerm(request):
         result = []
         for city in cities:
             city_json = {}
-            city_json = city.city_name
+            city_json = city.city_name 
+        
             
             result.append(city_json)
         data = json.dumps(result)
@@ -77,7 +78,11 @@ def getTerm(request):
 def saveLocation(request):
      
     if request.method == 'POST':
-        return HttpResponse(request.method)
+        city_picked = request.POST.get('search_term')
+        print("This is city from search input --> {}".format(city_picked))
+        city = City.objects.filter(city_name = city_picked).get()
+        print("This is city from DB --> {}".format(city.city_name))
+        return HttpResponse("This is name {}, lng {}, lat {}".format(city.city_name,city.lng, city.lat))
     
     
 def chat(request):
