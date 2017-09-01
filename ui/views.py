@@ -62,7 +62,7 @@ def getTerm(request):
         result = []
         for city in cities:
             city_json = {}
-            city_json['city_name'] = city.city_name
+            city_json = city.city_name
             
             result.append(city_json)
         data = json.dumps(result)
