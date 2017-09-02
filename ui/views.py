@@ -36,10 +36,10 @@ def register(request):
             form.save()
             user = User.objects.last()
             login(request, user)
-            if user.is_authenticated():
-                us = UserCity(user=user)
-                us.save()
-                print(us.user.id)
+#             if user.is_authenticated():
+#                 us = UserCity(user=user)
+#                 us.save()
+#                 print(us.user.id)
 
             return redirect('index')
     else:
@@ -81,8 +81,18 @@ def saveLocation(request):
         city_picked = request.POST.get('search_term')
         print("This is city from search input --> {}".format(city_picked))
         city = City.objects.filter(city_name = city_picked).get()
-        print("This is city from DB --> {}".format(city.city_name))
-        return HttpResponse("This is name {}, lng {}, lat {}".format(city.city_name,city.lng, city.lat))
+        user = request.user
+        u_s = UserCity(user=user,city=city)
+        u_s.save()     
+        
+        built_context={
+            'user': user,
+            'city': city.city_name,
+            'lng': city.lng,
+            'lat': city.lat,
+                }
+        
+        return render(request, template_name = 'ui/map.html', context = built_context)
     
     
 def chat(request):
