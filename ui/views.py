@@ -4,7 +4,7 @@ from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.contrib.auth.views import logout
 from django.http.response import HttpResponse, JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 
 from ui.forms import RegistrationForm
 from ui.models import City, UserCity, Chat
@@ -83,17 +83,35 @@ def saveLocation(request):
         city = City.objects.filter(city_name = city_picked).get()
         user = request.user
         u_s = UserCity(user=user,city=city)
-        u_s.save()     
+        u_s.save()
+
+        user_city_all = UserCity.objects.all()
         
+        lista=[]
+        
+        for item in user_city_all:
+            json_1 = {}
+            json_1["lat"] = float(item.city.lat)
+            json_1["lng"] = float(item.city.lng)
+            lista.append(json_1)
+        
+        print('____THIS IS LISTA_____',lista)
+
+        data = json.dumps(lista)
+
+        print('____THIS IS data_____',data)
+        
+            
+
         built_context={
-            'user': user,
-            'city': city.city_name,
-            'lng': city.lng,
-            'lat': city.lat,
-                }
-        
-        return render(request, template_name = 'ui/map.html', context = built_context)
-    
+            'u_s': u_s,
+            'user_city_all': user_city_all,
+            'json_list': data,
+        }
+#         print(built_context)
+#         return render(request, template_name = 'ui/map.html', context = built_context)
+        return render_to_response(template_name ='ui/map.html',context = built_context)
+
     
 def chat(request):
     
