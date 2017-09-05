@@ -119,7 +119,12 @@ def saveLocation1(request):
     
     if request.method == 'POST':
         place = request.POST.get("pac-input")
-        return HttpResponse("This is place {}".format(place))
+        city = City(city_name = place)
+        city.save()
+        u_s = UserCity(user = request.user, city = city)
+        u_s.save()
+        return HttpResponse("This place is saved <b>{}</b>. Redirection will be complete.".format(place))
+        
         
 def chat(request):
     
