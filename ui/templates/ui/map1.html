@@ -117,10 +117,9 @@
                   <button type="submit" class="uk-button uk-button-primary">Submit</button>
           </div> -->
           <div id="pac-container">
-            <form class="" action= {% url 'saveLocation1' %} method="post">
+            <form class="forma" action= {% url 'saveLocation1' %} method="post">
               {% csrf_token %}
-              <input id="pac-input" name='pac-input' type="text"
-                  placeholder="Enter a location">
+              <input id="pac-input" name='pac-input' type="text" placeholder="Enter a location">
               <button type="submit">Submit</button>
             </form>
           </div>
@@ -177,8 +176,24 @@
           var f_address = place.formatted_address;
           var lat = place.geometry.location.lat();
           var lng = place.geometry.location.lng();
-          document.getElementById('location').append([f_address, lat, lng]);
-          document.getElementById('pac-input').val(f_address);
+          // document.getElementById('location').append([f_address, lat, lng]);
+          // document.getElementById('pac-input').val(f_address);
+
+          const c = $('.forma');
+          const lat_entry = $('#lat_entry').get();
+          const lng_entry = $('#lng_entry').get();
+          if (lat_entry) {
+            lat_entry.forEach(function(entry) {
+              entry.remove();
+            });
+          }
+          if (lng_entry) {
+            lng_entry.forEach(function(entry) {
+              entry.remove();
+            });
+          }
+          c.append(`<input id="lng_entry" type="hidden" value="${lng}" name="lng" type="text">`);
+          c.append(`<input id="lat_entry" type="hidden" value="${lat}" name="lat" type="text">`);
           ////////
 
 

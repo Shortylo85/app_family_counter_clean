@@ -118,6 +118,7 @@ def saveLocation(request):
 def saveLocation1(request):
     
     if request.method == 'POST':
+        print(request.POST)
         place = request.POST.get("pac-input")
         city = City(city_name = place)
         city.save()
