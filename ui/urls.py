@@ -8,6 +8,7 @@ from ui import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^map/$', views.getMap, name='getMap'),
+    url(r'^map1/$', views.getMap1, name='getMap1'),
     
     # User's URL
     url(r'^login/$', login, {'template_name': 'account/login.html' }, name='user_login'),
@@ -17,6 +18,8 @@ urlpatterns = [
     
     url(r'^map/get-term/', views.getTerm, name='getTerm'),
     url(r'^save_location/$', views.saveLocation, name='saveLocation' ),
+    url(r'^save_location_1/$', views.saveLocation1, name='saveLocation1' ),
+
     
     # Chat URL
     url(r'^chat-page/$', views.chat, name='chat'),

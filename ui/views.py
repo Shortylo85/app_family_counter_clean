@@ -28,6 +28,9 @@ def getMap(request):
     
     return render(request, template_name = 'ui/map.html', context = built_context)
 
+def getMap1(request):
+    return render(request, template_name= 'ui/map1.html')
+
 def register(request):
     
     if request.method == 'POST':
@@ -112,7 +115,12 @@ def saveLocation(request):
 #         return render(request, template_name = 'ui/map.html', context = built_context)
         return render_to_response(template_name ='ui/map.html',context = built_context)
 
+def saveLocation1(request):
     
+    if request.method == 'POST':
+        place = request.POST.get("pac-input")
+        return HttpResponse("This is place {}".format(place))
+        
 def chat(request):
     
     chats = Chat.objects.all()
