@@ -4,7 +4,7 @@ from ui.models import City, UserCity, Chat
 
 
 class AdminCity(admin.ModelAdmin):
-    list_display = ['id','city_name']
+    list_display = ['id','city_name','lng','lat']
     search_fields = ['city_name']
     class Meta:    
         model = City

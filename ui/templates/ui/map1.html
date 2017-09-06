@@ -5,7 +5,7 @@
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 85%;
+        height: 93%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -100,30 +100,23 @@
 <br>
 <br>
 <br>
-<br>
+
     <div class="pac-card" id="pac-card">
       <div>
         <div id="title">
           Type here to find your city
         </div>
       </div>
-      <!-- <div id="pac-container">
-        <form class="" action= {% url 'saveLocation1' %} method="post">
-          {% csrf_token %}
-          <div class="uk-margin" uk-margin>
-                  <div uk-form-custom="target: true">
-                      <input class="uk-search-input" id="pac-input" type="text" placeholder="Search...">
-                  </div>
-                  <button type="submit" class="uk-button uk-button-primary">Submit</button>
-          </div> -->
+      <div id="pac-container">
           <div id="pac-container">
             <form class="forma" action= {% url 'saveLocation1' %} method="post">
               {% csrf_token %}
-              <input id="pac-input" name='pac-input' type="text" placeholder="Enter a location">
-              <button type="submit">Submit</button>
+              <div uk-form-custom="target: true">
+                  <input class="uk-search-input" id="pac-input" name="pac-input" type="text" placeholder="Enter your location...">
+              </div>
+              <button type="submit" class="uk-button uk-button-primary">Submit</button>
             </form>
           </div>
-        </form>
       </div>
     </div>
 
