@@ -7,7 +7,7 @@
     #map {
       height: 93%;
       position: relative;
-      z-index: 1;
+      /*z-index: 1;*/
     }
     /* Optional: Makes the sample page fill the window. */
     html, body {
@@ -45,6 +45,8 @@
 
 <script>
 
+  locations = {{json_list|safe}}
+
   function initMap() {
 
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -71,14 +73,14 @@
         {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
   }
 
-  locations = {{json_list|safe}}
 
-  console.log(locations);
-  var j = {{json_list|safe}}
-  console.log(j[0]['lat'])
-  for(var i=0; i<j.length; i++){
-    console.log(j[i])
-  }
+
+  // console.log(locations);
+  // var j = {{json_list|safe}}
+  // console.log(j[0]['lat'])
+  // for(var i=0; i<j.length; i++){
+  //   console.log(j[i])
+  // }
 
   </script>
   <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form class="" action= {% url 'postFamilyForm' %} method="post">
+      {% csrf_token %}
+      {{ family_form.as_p }}
+      <button type="submit" name="submit">submit</button>
+    </form>
+  </body>
+</html>

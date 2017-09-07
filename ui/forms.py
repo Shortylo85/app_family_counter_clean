@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.db.models.fields import CharField
 
 
 class RegistrationForm(UserCreationForm):
@@ -28,5 +29,29 @@ class RegistrationForm(UserCreationForm):
             user.save()
         
         return user
+    
+    
+class FamilyForm(forms.Form):
+    
+    otac = forms.CharField(required = False)
+    majka = forms.CharField(required = False)
+    oceva_majka = forms.CharField(required = False)
+    ocev_otac = forms.CharField(required = False)
+    majcina_majka = forms.CharField(required = False)
+    majcin_otac = forms.CharField(required = False)
+    oceva_baba_po_ocu = forms.CharField(required = False)
+    ocev_deda_po_ocu = forms.CharField(required = False)
+    majcina_baba_po_ocu = forms.CharField(required = False)
+    majcin_deda_po_ocu = forms.CharField(required = False)
+    oceva_baba_po_majci = forms.CharField(required = False)
+    ocev_deda_po_majci = forms.CharField(required = False)
+    majcina_baba_po_majci = forms.CharField(required = False)
+    majcin_deda_po_majci = forms.CharField(required = False)
+    
+
+   
+
+    
+    
 
     
